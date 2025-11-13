@@ -1,14 +1,11 @@
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: weather-api
-  description: Provides weather forecast data for a given city
-  tags:
-    - openapi
+  name: my-demo-api
+  description: Demo API for testing Backstage registration
 spec:
   type: openapi
   lifecycle: experimental
   owner: platform-team
-  system: weather-system
   definition:
-    $openapi: https://raw.githubusercontent.com/your-org/your-repo/main/openapi.yaml
+    $openapi: https://raw.githubusercontent.com/Sathishkunisai/backstage/main/api.yaml
