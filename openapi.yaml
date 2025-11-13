@@ -1,0 +1,18 @@
+openapi: 3.0.0
+info:
+  title: Weather API
+  version: 1.0.0
+paths:
+  /forecast:
+    get:
+      summary: Get 7-day forecast
+      parameters:
+        - in: query
+          name: city
+          schema:
+            type: string
+          required: true
+          description: City name
+      responses:
+        '200':
+          description: Successful forecast data
