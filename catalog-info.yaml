@@ -5,6 +5,8 @@ metadata:
   annotations:
     github.com/project-slug: Sathishkunisai/backstage
 spec:
-  type: other
-  lifecycle: unknown
-  owner: guests
+  type: openapi
+  lifecycle: experimental
+  owner: platform-team
+  definition:
+    $openapi: https://raw.githubusercontent.com/Sathishkunisai/backstage/main/openapi-1.yaml
