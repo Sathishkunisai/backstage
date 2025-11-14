@@ -6,6 +6,8 @@ import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
+import BuildIcon from '@material-ui/icons/Build';
+
 import {
   Settings as SidebarSettings,
   UserSettingsSignInAvatar,
@@ -92,6 +94,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         to="/settings"
       >
         <SidebarSettings />
+        <SidebarItem icon={BuildIcon} to="devtools" text="DevTools" />
       </SidebarGroup>
     </Sidebar>
     {children}

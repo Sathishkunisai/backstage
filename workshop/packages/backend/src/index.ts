@@ -8,8 +8,9 @@
 
 import { createBackend } from '@backstage/backend-defaults';
 
-const backend = createBackend();
 
+
+const backend = createBackend();
 backend.add(import('@backstage/plugin-app-backend'));
 backend.add(import('@backstage/plugin-proxy-backend'));
 
@@ -62,5 +63,5 @@ backend.add(import('@backstage/plugin-kubernetes-backend'));
 // notifications and signals plugins
 backend.add(import('@backstage/plugin-notifications-backend'));
 backend.add(import('@backstage/plugin-signals-backend'));
-
+backend.add(import('@backstage-community/plugin-servicenow-backend'));
 backend.start();

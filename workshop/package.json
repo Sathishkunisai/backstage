@@ -50,5 +50,12 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.4.1",
+  "dependencies": {
+    "@roadiehq/rag-ai": "^1.3.0",
+    "@roadiehq/rag-ai-backend": "^2.2.0",
+    "@roadiehq/rag-ai-backend-embeddings-aws": "^1.3.0",
+    "@roadiehq/rag-ai-backend-retrieval-augmenter": "^1.3.0",
+    "@roadiehq/rag-ai-storage-pgvector": "^2.2.0"
+  }
 }
