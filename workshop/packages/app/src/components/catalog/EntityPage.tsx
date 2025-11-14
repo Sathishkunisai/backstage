@@ -8,6 +8,11 @@ import {
   EntityProvidingComponentsCard,
 } from '@backstage/plugin-api-docs';
 import {
+  EntityServicenowContent,
+  isServicenowAvailable,
+  isMyProfile,
+} from '@backstage-community/plugin-servicenow'
+import {
   EntityAboutCard,
   EntityDependsOnComponentsCard,
   EntityDependsOnResourcesCard,
@@ -182,11 +187,18 @@ const serviceEntityPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
-
+    <EntityLayout.Route
+      path="/servicenow"
+      title="ServiceNow"
+      if={isServicenowAvailable}
+    >
+      <EntityServicenowContent />
+    </EntityLayout.Route>
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
   </EntityLayout>
+
 );
 
 const websiteEntityPage = (
@@ -221,6 +233,13 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+    <EntityLayout.Route
+      path="/servicenow"
+      title="ServiceNow"
+      if={isServicenowAvailable}
+    >
+      <EntityServicenowContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -236,6 +255,13 @@ const defaultEntityPage = (
     <EntityLayout.Route path="/" title="Overview">
       {overviewContent}
     </EntityLayout.Route>
+  <EntityLayout.Route
+    path="/servicenow"
+    title="ServiceNow"
+    if={isServicenowAvailable}
+  >
+    <EntityServicenowContent />
+  </EntityLayout.Route>
 
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
