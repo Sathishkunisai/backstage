@@ -1,0 +1,32 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: redis-deploy
+  title: Deploy Redis Container
+  description: Launches a Redis Docker container on the local machine
+spec:
+  owner: platform-team
+  type: service
+
+  parameters:
+    - title: Redis Container Name
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name of the Redis container
+          default: redis-local
+
+  steps:
+    - id: deploy
+      name: Start Redis Container
+      action: custom:docker-run
+      input:
+        containerName: ${{ parameters.name }}
+        image: redis:7.2
+
+  output:
+    text:
+      - title: Redis Deployment
+        content: "Redis container '${{ parameters.name }}' has been started successfully."
