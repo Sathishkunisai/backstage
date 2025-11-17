@@ -1,12 +1,16 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: ${{ parameters.component_id }}
-  description: This is a test component created via the Scaffolder.
+  name: my-first-registered-service
+  description: |
+    A simple backend service registered manually via the catalog UI.
+  links:
+    - title: GitHub Repository
+      url: https://github.com/my-org/my-first-registered-service
   annotations:
-    example.com/component-type: generated-test
+    github.com/project-slug: my-org/my-first-registered-service
+    backstage.io/techdocs-ref: url:https://github.com/my-org/my-first-registered-service
 spec:
   type: service
+  owner: team-alpha
   lifecycle: experimental
-  owner: ${{ parameters.owner | dump }}
-  system: default
