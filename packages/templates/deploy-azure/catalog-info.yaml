@@ -1,15 +1,15 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: my-first-registered-service
+  name: my-second-registered-service
   description: |
     A simple backend service registered manually via the catalog UI.
   links:
     - title: GitHub Repository
-      url: https://github.com/my-org/my-first-registered-service
+      url: https://github.com/Sathishkunisai/backstage/tree/main/packages/templates/deploy-azure
   annotations:
     github.com/project-slug: my-org/my-first-registered-service
-    backstage.io/techdocs-ref: url:https://github.com/my-org/my-first-registered-service
+    backstage.io/techdocs-ref: url:https://github.com/Sathishkunisai/backstage/tree/main/packages/templates/deploy-azure
 spec:
   type: service
   owner: team-alpha
