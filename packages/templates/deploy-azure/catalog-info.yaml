@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ parameters.component_id | dump }}
+  description: This is a test component created via the Scaffolder.
+  annotations:
+    example.com/component-type: generated-test
+spec:
+  type: service
+  lifecycle: experimental
+  owner: ${{ parameters.owner | dump }}
+  system: default

@@ -1,39 +1,45 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: deploy-azure
-  title: Provision Azure Infrastructure
-  description: Create an Azure VM, Storage, and Networking via Terraform
+  name: simple-test-template
+  title: Simple Component Registration Test
+  description: Creates a minimal component entry in the Backstage Catalog.
 spec:
-  owner: cloud-team
+  owner: user
+  type: service
   parameters:
-    # ... (parameters block remains the same)
-    - title: Azure Configuration
-      required: [resource_group, vm_name, region]
+    - title: Component Details
+      required:
+        - component_id
+        - owner
       properties:
-        # ... (properties details)
+        component_id:
+          title: Component ID
+          type: string
+          description: Unique ID for the new component.
+        owner:
+          title: Component Owner
+          type: string
+          description: The owner of this component (e.g., 'team-a' or 'user').
+          default: user
   steps:
-    - id: fetch
-      name: Fetch Terraform Template
-      action: fetch:template
+    - id: fetch-base
+      name: Fetch Base Content
+      action: fetch:plain
       input:
-        url: ./skeleton
-    - id: terraform
-      name: Apply Terraform
-      action: run:script
-      input:
-        script: |
-          cd ./skeleton
-          terraform init
-          terraform apply -auto-approve \
-            -var "resource_group=${{ parameters.resource_group }}" \
-            -var "vm_name=${{ parameters.vm_name }}" \
-            -var "region=${{ parameters.region }}"
-    - id: publish-catalog # <--- NEW STEP ADDED
-      name: Publish to Backstage Catalog
+        targetPath: ./
+        files:
+          - src: ./skeleton/catalog-info.yaml
+            target: ./catalog-info.yaml
+    
+    - id: register
+      name: Register Component
       action: catalog:register
       input:
-        catalogInfoUrl: ./skeleton/catalog-info.yaml
+        catalogInfoUrl: ./catalog-info.yaml
+    
   output:
-    # ... (output block remains the same)
-
+    links:
+      - title: Open in Catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
