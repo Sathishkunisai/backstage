@@ -7,19 +7,11 @@ metadata:
 spec:
   owner: cloud-team
   parameters:
+    # ... (parameters block remains the same)
     - title: Azure Configuration
       required: [resource_group, vm_name, region]
       properties:
-        resource_group:
-          type: string
-          title: Resource Group
-        vm_name:
-          type: string
-          title: VM Name
-        region:
-          type: string
-          title: Region
-          default: eastus
+        # ... (properties details)
   steps:
     - id: fetch
       name: Fetch Terraform Template
@@ -37,7 +29,11 @@ spec:
             -var "resource_group=${{ parameters.resource_group }}" \
             -var "vm_name=${{ parameters.vm_name }}" \
             -var "region=${{ parameters.region }}"
+    - id: publish-catalog # <--- NEW STEP ADDED
+      name: Publish to Backstage Catalog
+      action: catalog:register
+      input:
+        catalogInfoUrl: ./skeleton/catalog-info.yaml
   output:
-    text:
-      - title: VM Info
-        content: 'Azure VM ${{ parameters.vm_name }} deployed in ${{ parameters.region }}'
+    # ... (output block remains the same)
+
