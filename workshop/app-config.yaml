@@ -3,9 +3,15 @@ app:
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Traffic foundation  
+
 
 backend:
+  reading:
+    allow:
+      - host: github.com
+      - host: raw.githubusercontent.com
+
   # Used for enabling authentication, secret is shared by all backend plugins
   # See https://backstage.io/docs/auth/service-to-service-auth for
   # information on the format
@@ -79,11 +85,16 @@ auth:
   providers:
     # See https://backstage.io/docs/auth/guest/provider
     guest: {}
-
+    github:
+      development:
+        clientId: ${GITHUB_CLIENT_ID}
+        clientSecret: ${GITHUB_CLIENT_SECRET}
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
 
 catalog:
+
+
   import:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
@@ -105,6 +116,14 @@ catalog:
       target: ../../examples/org.yaml
       rules:
         - allow: [User, Group]
+
+    - type: url
+      target: https://raw.githubusercontent.com/Sathishkunisai/backstage/main/redis-template/template.yaml
+      
+    - type: file
+      target: ../../catalog/templates/redis/template.yaml
+      rules:
+        - allow: [Template]
 
     ## Uncomment these lines to add more example data
     # - type: url
