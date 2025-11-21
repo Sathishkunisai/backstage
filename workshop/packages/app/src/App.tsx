@@ -1,3 +1,7 @@
+import { FireflyPage } from '@fireflyai/backstage-plugin-firefly';
+// packages/app/src/App.tsx
+
+import React from 'react';
 import { Navigate, Route } from 'react-router-dom';
 import { apiDocsPlugin, ApiExplorerPage } from '@backstage/plugin-api-docs';
 import {
@@ -37,6 +41,11 @@ import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
 import { NotificationsPage } from '@backstage/plugin-notifications';
 import { SignalsDisplay } from '@backstage/plugin-signals';
+import { DevToolsPage } from '@backstage/plugin-devtools';
+
+// New import for RAG AI plugin
+import { RagModal } from '@roadiehq/rag-ai';
+import { N8nIndexPage } from '@jincoco/backstage-plugin-n8n-frontend';
 
 const app = createApp({
   apis,
@@ -56,10 +65,10 @@ const app = createApp({
     bind(orgPlugin.externalRoutes, {
       catalogIndex: catalogPlugin.routes.catalogIndex,
     });
-  },
-  components: {
-    SignInPage: props => <SignInPage {...props} auto providers={['guest']} />,
-  },
+    },
+    components: {
+      SignInPage: props => <SignInPage {...props} auto providers={['guest']} />,
+    },
 });
 
 const routes = (
@@ -97,16 +106,21 @@ const routes = (
     <Route path="/settings" element={<UserSettingsPage />} />
     <Route path="/catalog-graph" element={<CatalogGraphPage />} />
     <Route path="/notifications" element={<NotificationsPage />} />
+    <Route path="/devtools" element={<DevToolsPage />} />
+    <Route path="/firefly" element={<FireflyPage />} />
   </FlatRoutes>
-);
+  );
+        <Route path="/n8n" element={<N8nIndexPage />} />
 
-export default app.createRoot(
-  <>
-    <AlertDisplay />
-    <OAuthRequestDialog />
-    <SignalsDisplay />
-    <AppRouter>
-      <Root>{routes}</Root>
-    </AppRouter>
-  </>,
-);
+  export default app.createRoot(
+    <>
+      <AlertDisplay />
+      <OAuthRequestDialog />
+      <SignalsDisplay />
+      {/* Insert RagModal just inside AppRouter, before Root */}
+      <AppRouter>
+        <RagModal />
+        <Root>{routes}</Root>
+      </AppRouter>
+    </>
+  );

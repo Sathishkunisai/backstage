@@ -52,6 +52,7 @@
   },
   "packageManager": "yarn@4.4.1",
   "dependencies": {
+    "@fireflyai/backstage-plugin-firefly": "^1.0.3",
     "@roadiehq/rag-ai": "^1.3.0",
     "@roadiehq/rag-ai-backend": "^2.2.0",
     "@roadiehq/rag-ai-backend-embeddings-aws": "^1.3.0",

@@ -1,4 +1,5 @@
 import { Button, Grid } from '@material-ui/core';
+import { EntityDependenciesIaCCoverageCard } from '@fireflyai/backstage-plugin-firefly';
 import {
   EntityApiDefinitionCard,
   EntityConsumedApisCard,
@@ -137,6 +138,11 @@ const overviewContent = (
     </Grid>
     <Grid item md={6} xs={12}>
       <EntityCatalogGraphCard variant="gridItem" height={400} />
+    </Grid>
+
+    {/* Firefly IaC Coverage Card */}
+    <Grid item md={4} xs={12}>
+      <EntityDependenciesIaCCoverageCard />
     </Grid>
 
     <Grid item md={4} xs={12}>

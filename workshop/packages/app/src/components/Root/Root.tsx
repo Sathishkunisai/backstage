@@ -7,6 +7,8 @@ import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import BuildIcon from '@material-ui/icons/Build';
+import SettingsEthernetIcon from '@material-ui/icons/SettingsEthernet';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
 
 import {
   Settings as SidebarSettings,
@@ -85,6 +87,10 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+
+          {/* n8n sidebar item */}
+          <SidebarItem icon={SettingsEthernetIcon} to="/n8n" text="n8n" />
+            <SidebarItem icon={WhatshotIcon} to="/firefly" text="Firefly" />
 
         {/* ⭐ NEW RAG-AI BUTTON IN SIDEBAR */}
         <SidebarRagModal />
