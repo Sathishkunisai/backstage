@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: my-second-registered-service
+  name: F5-Self-Service-Component
   description: |
     A simple backend service registered manually via the catalog UI.
   links:
